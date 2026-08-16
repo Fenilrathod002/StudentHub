@@ -1,35 +1,105 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css">
+
     <title>StudentHub | Academics</title>
 </head>
+
 <body>
-    <header>
-        <h1>Academics Center</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="academics.html">Academics</a></li>
-                <li><a href="attendance.html">Attendance</a></li>
-                <li><a href="communication.html">Communication</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="student_dash.html">Student Dash</a></li>
-                <li><a href="teacher_dash.html">Teacher Dash</a></li>
-                <li><a href="admin_dash.html">Admin Dash</a></li>
-            </ul>
-        </nav>
+
+    <!-- =========================
+         HEADER / NAVIGATION
+    ========================== -->
+    <header class="site-header">
+
+        <div class="nav-container">
+
+            <!-- StudentHub Brand -->
+            <a href="index.html" class="brand">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="brand-logo">
+                <span class="brand-name">StudentHub</span>
+            </a>
+
+            <!-- Main Navigation -->
+            <nav class="main-navigation" aria-label="Main Navigation">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a href="index.html" class="nav-link">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="about.html" class="nav-link">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="academics.html" class="nav-link active">
+                            Academics
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="attendance.html" class="nav-link">
+                            Attendance
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="communication.html" class="nav-link">
+                            Communication
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contact.html" class="nav-link">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <!-- Authentication Actions -->
+            <div class="nav-actions">
+
+                <a href="login.html" class="nav-login">
+                    Login
+                </a>
+
+                <a href="register.html" class="nav-register">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
     </header>
 
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
     <main>
+
+        <!-- Current Subjects -->
         <section>
+
             <h2>Current Subjects</h2>
+
             <table>
+
                 <thead>
                     <tr>
                         <th>Subject</th>
@@ -38,57 +108,140 @@
                         <th>Deadline</th>
                     </tr>
                 </thead>
+
                 <tbody>
+
                     <tr>
                         <td>Web Design Fundamentals</td>
                         <td>Prof. Sharma</td>
-                        <td><a href="#">Lecture Notes</a></td>
+                        <td>
+                            <a href="#">Lecture Notes</a>
+                        </td>
                         <td>10 Jun 2026</td>
                     </tr>
+
                     <tr>
                         <td>Database Systems</td>
                         <td>Prof. Rao</td>
-                        <td><a href="#">Practice Sheet</a></td>
+                        <td>
+                            <a href="#">Practice Sheet</a>
+                        </td>
                         <td>12 Jun 2026</td>
                     </tr>
+
                     <tr>
                         <td>Computer Networks</td>
                         <td>Prof. Mehta</td>
-                        <td><a href="#">Lab Guide</a></td>
+                        <td>
+                            <a href="#">Lab Guide</a>
+                        </td>
                         <td>15 Jun 2026</td>
                     </tr>
+
                 </tbody>
+
             </table>
+
         </section>
 
+
+        <!-- Upcoming Assignments -->
         <section>
+
             <h2>Upcoming Assignments</h2>
+
             <ul>
-                <li>UI Wireframe Submission - 18 June</li>
-                <li>Database ER Diagram - 20 June</li>
-                <li>Networking Quiz - 22 June</li>
+
+                <li>
+                    UI Wireframe Submission - 18 June
+                </li>
+
+                <li>
+                    Database ER Diagram - 20 June
+                </li>
+
+                <li>
+                    Networking Quiz - 22 June
+                </li>
+
             </ul>
+
         </section>
 
+
+        <!-- Request Academic Material -->
         <section>
+
             <h2>Request Academic Material</h2>
-            <form action="#">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject">
 
-                <label for="material">Material Needed</label>
-                <input type="text" id="material" name="material">
+            <form action="#" method="post">
 
-                <label for="details">Details</label>
-                <textarea id="details" name="details" rows="4"></textarea>
+                <div>
+                    <label for="subject">
+                        Subject
+                    </label>
 
-                <button type="submit">Submit Request</button>
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        placeholder="Enter subject name"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label for="material">
+                        Material Needed
+                    </label>
+
+                    <input
+                        type="text"
+                        id="material"
+                        name="material"
+                        placeholder="Enter material required"
+                        required
+                    >
+                </div>
+
+
+                <div>
+                    <label for="details">
+                        Details
+                    </label>
+
+                    <textarea
+                        id="details"
+                        name="details"
+                        rows="4"
+                        placeholder="Describe the material you need"
+                    ></textarea>
+                </div>
+
+
+                <button type="submit">
+                    Submit Request
+                </button>
+
             </form>
+
         </section>
+
     </main>
 
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
     <footer>
-        <p>Keep learning with StudentHub.</p>
+
+        <p>
+            Keep learning with StudentHub.
+        </p>
+
     </footer>
+
 </body>
+
 </html>

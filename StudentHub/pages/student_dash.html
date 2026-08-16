@@ -1,30 +1,79 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>StudentHub | Student Dashboard</title>
 </head>
+
 <body>
-    <header>
-        <h1>Student Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="academics.html">Academics</a></li>
-                <li><a href="attendance.html">Attendance</a></li>
-                <li><a href="communication.html">Communication</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="student_dash.html">Student Dash</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+
+        <div class="nav-container">
+
+            <a href="student_dash.html" class="brand">
+
+                <img src="../images/logo.png" alt="StudentHub Logo" class="brand-logo">
+
+                <span class="brand-name">StudentHub</span>
+
+            </a>
+
+
+            <nav class="main-navigation" aria-label="Student Navigation">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a href="student_dash.html" class="nav-link active">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="academics.html" class="nav-link">
+                            Academics
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="attendance.html" class="nav-link">
+                            Attendance
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="communication.html" class="nav-link">
+                            Communication
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="profile.html" class="nav-link">
+                            Profile
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <a href="index.html" class="nav-login">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
     </header>
 
-    <main>
+    <main class="layout-sidebar">
         <section>
             <h2>Welcome, Aditi</h2>
             <p>Your academic summary for this week is ready.</p>
@@ -74,4 +123,5 @@
         <p>Keep your academic journey organized with StudentHub.</p>
     </footer>
 </body>
+
 </html>

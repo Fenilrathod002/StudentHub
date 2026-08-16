@@ -1,56 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub | Home</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="icon" type="image/png" href="../images/logo.png">
 </head>
+
 <body>
-    <header>
-        <h1>StudentHub</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="academics.html">Academics</a></li>
-                <li><a href="attendance.html">Attendance</a></li>
-                <li><a href="communication.html">Communication</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="student_dash.html">Student Dash</a></li>
-                <li><a href="teacher_dash.html">Teacher Dash</a></li>
-                <li><a href="admin_dash.html">Admin Dash</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+
+        <div class="nav-container">
+
+            <!-- StudentHub Brand -->
+            <a href="index.html" class="brand">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="brand-logo">
+                <span class="brand-name">StudentHub</span>
+            </a>
+
+            <!-- Main Navigation -->
+            <nav class="main-navigation" aria-label="Main Navigation">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a href="index.html" class="nav-link active">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="about.html" class="nav-link">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="academics.html" class="nav-link">
+                            Academics
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="attendance.html" class="nav-link">
+                            Attendance
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="communication.html" class="nav-link">
+                            Communication
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contact.html" class="nav-link">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <!-- Authentication -->
+            <div class="nav-actions">
+
+                <a href="login.html" class="nav-login">
+                    Login
+                </a>
+
+                <a href="register.html" class="nav-register">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
     </header>
 
     <main>
-        <section>
-            <h2>Welcome to StudentHub</h2>
-            <p>StudentHub is a simple student management portal for colleges that brings academics, attendance, communication, and profiles into one easy place.</p>
-            <p><a href="register.html">Create an account</a> or <a href="login.html">sign in</a> to get started.</p>
+        <section class="hero-section">
+
+            <!-- Campus Image Slider -->
+            <div class="campus-slider" aria-label="Campus Image Slider">
+
+                <div class="slider-track">
+
+
+                    <div class="slide active">
+                        <img src="../images/campus_image.png" alt="StudentHub College Campus"
+                            class="campus-slide-image">
+                    </div>
+
+                    <!--
+                TODO:
+                Add more slides here when you are ready.
+
+                Example:
+
+                <div class="slide">
+                    <img
+                        src="../assets/images/campus-2.jpg"
+                        alt="College Campus"
+                        class="campus-slide-image"
+                    >
+                </div>
+            -->
+
+                </div>
+
+                <!-- Previous Button -->
+                <button type="button" class="slider-button slider-prev" aria-label="Previous campus image">
+                    &#10094;
+                </button>
+
+                <!-- Next Button -->
+                <button type="button" class="slider-button slider-next" aria-label="Next campus image">
+                    &#10095;
+                </button>
+
+                <!-- Slider Indicators -->
+                <div class="slider-indicators">
+
+                    <button type="button" class="slider-dot active" aria-label="Show campus image 1">
+                    </button>
+
+                    <!--
+                TODO:
+                Add additional dots when additional images are added.
+            -->
+
+                </div>
+
+            </div>
+
+
+            <!-- StudentHub Introduction -->
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    WELCOME TO STUDENTHUB
+                </span>
+
+                <h1>
+                    Your Campus.
+                    <span>Your Community.</span>
+                </h1>
+
+                <p>
+                    StudentHub brings students, teachers, and academic
+                    resources together in one simple and convenient platform.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="login.html" class="btn btn-primary">
+                        Get Started
+                    </a>
+
+                    <a href="about.html" class="btn btn-secondary">
+                        Learn More
+                    </a>
+
+                </div>
+
+            </div>
+
         </section>
 
         <section>
-            <h2>What You Can Do</h2>
+            <h2>Why StudentHub</h2>
             <article>
-                <h3>For Students</h3>
-                <p>View attendance, assignments, notices, and personal profile details in one dashboard.</p>
+                <h3>Built for real campuses</h3>
+                <p>The portal is designed for active classrooms, daily attendance, and seamless student support.</p>
             </article>
             <article>
-                <h3>For Teachers</h3>
-                <p>Track class updates, share study materials, and manage communication with students.</p>
+                <h3>Fast adoption</h3>
+                <p>Clear navigation, responsive layout, and focused pages make onboarding fast for everyone.</p>
             </article>
             <article>
-                <h3>For Administrators</h3>
-                <p>Monitor college activity, publish announcements, and oversee student and faculty records.</p>
+                <h3>Secure access</h3>
+                <p>Separate role-based paths for students, teachers, and admins keep sensitive data protected.</p>
             </article>
         </section>
 
         <section>
-            <h2>Latest Notices</h2>
+            <h2>Campus announcements</h2>
             <ul>
                 <li>Practical submission deadline is 25 May 2026.</li>
                 <li>Mid-semester examination timetable has been published.</li>
@@ -64,4 +204,5 @@
         <p>&copy; 2026 StudentHub. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
