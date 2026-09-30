@@ -1,3 +1,9 @@
+<!-- 
+FAQ(Button Click Answer Sow) 
+Heading Change 
+Dark Mode
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +72,12 @@
 
             </nav>
 
-            <!-- Authentication -->
             <div class="nav-actions">
+
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode"
+                    title="Switch to dark mode">
+                    🌙
+                </button>
 
                 <a href="login.html" class="nav-login">
                     Login
@@ -78,6 +88,7 @@
                 </a>
 
             </div>
+
 
         </div>
 
@@ -147,10 +158,11 @@
                     WELCOME TO STUDENTHUB
                 </span>
 
-                <h1>
+                <h1 id="hero-heading">
                     Your Campus.
                     <span>Your Community.</span>
                 </h1>
+
 
                 <p>
                     StudentHub brings students, teachers, and academic
@@ -167,7 +179,12 @@
                         Learn More
                     </a>
 
+                    <button type="button" id="heading-change-btn" class="btn btn-heading-change">
+                        Change Heading
+                    </button>
+
                 </div>
+
 
             </div>
 
@@ -197,12 +214,143 @@
                 <li>Campus library will remain open during the weekend.</li>
             </ul>
         </section>
+
+        <section class="faq-section">
+
+            <h2>Frequently Asked Questions</h2>
+
+            <p class="faq-intro">
+                Find quick answers to common questions about StudentHub.
+            </p>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button type="button" class="faq-question" aria-expanded="false">
+
+                        <span>What is StudentHub?</span>
+
+                        <span class="faq-icon">+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            StudentHub is a campus platform that brings
+                            students, teachers, academic resources, attendance,
+                            communication, and other campus services together
+                            in one place.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="faq-item">
+
+                    <button type="button" class="faq-question" aria-expanded="false">
+
+                        <span>Who can use StudentHub?</span>
+
+                        <span class="faq-icon">+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            StudentHub is designed for students, teachers,
+                            and administrators. Each role can access the
+                            features relevant to their responsibilities.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="faq-item">
+
+                    <button type="button" class="faq-question" aria-expanded="false">
+
+                        <span>How can I register for StudentHub?</span>
+
+                        <span class="faq-icon">+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            Click the Register button in the navigation menu
+                            and complete the registration form with the
+                            required information.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="faq-item">
+
+                    <button type="button" class="faq-question" aria-expanded="false">
+
+                        <span>Can students check their attendance?</span>
+
+                        <span class="faq-icon">+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            Yes. Students can use the Attendance section
+                            to view their attendance information.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="faq-item">
+
+                    <button type="button" class="faq-question" aria-expanded="false">
+
+                        <span>Does StudentHub support different user roles?</span>
+
+                        <span class="faq-icon">+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            Yes. The project includes separate paths for
+                            students, teachers, and administrators.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
     </main>
 
     <footer>
         <p>Email: studenthub@gmail.com</p>
         <p>&copy; 2026 StudentHub. All rights reserved.</p>
     </footer>
+
+    <script src="../js/script.js"></script>
 </body>
 
 </html>
