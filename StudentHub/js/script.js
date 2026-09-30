@@ -1,84 +1,85 @@
-console.log("StudentHub Javascript Loaded Successfully.");
-console.log("Welcome To The StudentHub.");
-console.log("Practical-4 Javascript");
-
-
-function welcomepage(){
-    console.log("Welcome To The StudentHub.")
-}
-
-welcomepage();
-
-function student(name, mycourse){
-    console.log("Hii, I Am " + name + " I Am In " + mycourse + " Departement.");
-}
-
-
 /* =========================================================
    STUDENTHUB JAVASCRIPT
    ========================================================= */
 
-console.log("StudentHub Javascript Loaded Successfully.");
-console.log("Welcome To The StudentHub.");
-console.log("Practical-4 Javascript");
+console.log("StudentHub JavaScript loaded successfully.");
 
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("theme-toggle");
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("studenthub-theme");
 
-/* =========================================================
-   BASIC JAVASCRIPT VARIABLES
-   ========================================================= */
-
-let studentname = "Fenil";
-let course = "Information Technology";
-let semester = "3";
-console.log(studentname);
-console.log(course);
-console.log(semester);
-
-
-let college = "CHARUSAT";
-let year = "2026";
-let isStudent = True;
-console.log(college);
-console.log(year);
-console.log(isStudent);
-
-
-/* =========================================================
-   WELCOME FUNCTION
-   ========================================================= */
-
-function welcomepage() {
-
-    console.log("Welcome To The StudentHub.");
-
-}
-
-welcomepage();
-
-
-/* =========================================================
-   STUDENT FUNCTION
-   ========================================================= */
-
-function student(name, mycourse) {
-
-    console.log(
-        "Hii, I Am " +
-        name +
-        " I Am In " +
-        mycourse +
-        " Department."
+    root.setAttribute(
+        "data-theme",
+        savedTheme === "dark" ? "dark" : "light"
     );
 
-}
+    function updateThemeButton() {
+        if (!themeToggle) {
+            return;
+        }
 
-student("Fenil Rathod","IT");
+        const isDark = root.getAttribute("data-theme") === "dark";
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+        themeToggle.setAttribute(
+            "title",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+    }
 
+    updateThemeButton();
 
+    if (themeToggle) {
+        themeToggle.addEventListener("click", function () {
+            const nextTheme =
+                root.getAttribute("data-theme") === "dark"
+                    ? "light"
+                    : "dark";
 
-let changeHeading = document.getElementById("heading");
-// changeHeading.onclick = ;
+            root.setAttribute("data-theme", nextTheme);
+            localStorage.setItem("studenthub-theme", nextTheme);
+            updateThemeButton();
+        });
+    }
 
+    const heading = document.getElementById("hero-heading");
+    const headingChangeButton = document.getElementById("heading-change-btn");
 
+    if (heading && headingChangeButton) {
+        headingChangeButton.addEventListener("click", function () {
+            heading.innerHTML = "Learn. <span>Connect. Grow.</span>";
+        });
+    }
 
+    document.querySelectorAll(".faq-question").forEach(function (question) {
+        question.addEventListener("click", function () {
+            const faqItem = question.closest(".faq-item");
+            const isCurrentlyOpen = faqItem.classList.contains("open");
 
+            document.querySelectorAll(".faq-item").forEach(function (item) {
+                item.classList.remove("open");
+                item.querySelector(".faq-question")?.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+                const itemIcon = item.querySelector(".faq-icon");
+                if (itemIcon) {
+                    itemIcon.textContent = "+";
+                }
+            });
+
+            if (!isCurrentlyOpen) {
+                faqItem.classList.add("open");
+                question.setAttribute("aria-expanded", "true");
+                const icon = question.querySelector(".faq-icon");
+                if (icon) {
+                    icon.textContent = "−";
+                }
+            }
+        });
+    });
+});
