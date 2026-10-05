@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>StudentHub | FAQ</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand"><img src="../images/logo.png" alt="StudentHub Logo" class="brand-logo"><span class="brand-name">StudentHub</span></a>
+            <nav class="main-navigation" aria-label="Main Navigation"><ul class="nav-list"><li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li><li><a href="academics.html" class="nav-link">Academics</a></li><li><a href="events.html" class="nav-link">Events</a></li><li><a href="students.html" class="nav-link">Students</a></li><li><a href="faq.html" class="nav-link active">FAQ</a></li><li><a href="contact.html" class="nav-link">Contact</a></li></ul></nav>
+            <div class="nav-actions"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">🌙</button><a href="login.html" class="nav-login">Login</a><a href="register.html" class="nav-register">Register</a></div>
+        </div>
+    </header>
+    <main>
+        <section class="data-page-intro"><p class="eyebrow">Practical 6</p><h1>Frequently Asked Questions</h1><p>Find clear answers about using StudentHub.</p></section>
+        <section class="data-section" id="faqs-page">
+            <div class="data-controls data-controls-compact" aria-label="FAQ controls"><div><label for="faq-search">Search questions</label><input id="faq-search" type="search" placeholder="Search by question"></div><div><label for="faq-sort">Sort by</label><select id="faq-sort"><option value="default">Default</option><option value="question-asc">A → Z</option><option value="question-desc">Z → A</option></select></div></div>
+            <p class="data-status" id="faqs-status" role="status">Loading FAQs...</p>
+            <div class="faq-data-list" id="faq-list" aria-live="polite"></div>
+            <div class="pagination" id="faqs-pagination" hidden><button type="button" id="faqs-previous">Previous</button><p id="faqs-page-info"></p><button type="button" id="faqs-next">Next</button></div>
+        </section>
+    </main>
+    <footer><p>Find support whenever you need it with StudentHub.</p></footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

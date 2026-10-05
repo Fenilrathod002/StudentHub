@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>StudentHub | Students</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand"><img src="../images/logo.png" alt="StudentHub Logo" class="brand-logo"><span class="brand-name">StudentHub</span></a>
+            <nav class="main-navigation" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li><li><a href="academics.html" class="nav-link">Academics</a></li><li><a href="events.html" class="nav-link">Events</a></li><li><a href="students.html" class="nav-link active">Students</a></li><li><a href="faq.html" class="nav-link">FAQ</a></li><li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">🌙</button><a href="login.html" class="nav-login">Login</a><a href="register.html" class="nav-register">Register</a></div>
+        </div>
+    </header>
+    <main>
+        <section class="data-page-intro"><p class="eyebrow">Practical 6</p><h1>Student Directory</h1><p>Browse student records loaded from the StudentHub directory.</p></section>
+        <section class="data-section" id="students-page">
+            <div class="data-controls" aria-label="Student controls">
+                <div><label for="student-search">Search students</label><input id="student-search" type="search" placeholder="Search by name"></div>
+                <div><label for="student-course">Course</label><select id="student-course"><option value="">All Courses</option><option>B.Tech IT</option><option>B.Tech CSE</option><option>BCA</option></select></div>
+                <div><label for="student-year">Year</label><select id="student-year"><option value="">All Years</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+                <div><label for="student-sort">Sort by</label><select id="student-sort"><option value="default">Default</option><option value="name-asc">Name A → Z</option><option value="name-desc">Name Z → A</option><option value="year-asc">Year Low → High</option><option value="year-desc">Year High → Low</option></select></div>
+            </div>
+            <p class="data-status" id="students-status" role="status">Loading students...</p>
+            <div class="data-card-grid" id="student-list" aria-live="polite"></div>
+            <div class="pagination" id="students-pagination" hidden><button type="button" id="students-previous">Previous</button><p id="students-page-info"></p><button type="button" id="students-next">Next</button></div>
+        </section>
+    </main>
+    <footer><p>StudentHub keeps campus connections organized.</p></footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

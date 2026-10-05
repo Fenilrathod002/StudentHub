@@ -1,9 +1,3 @@
-<!-- 
-FAQ(Button Click Answer Sow) 
-Heading Change 
-Dark Mode
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,6 +41,24 @@ Dark Mode
                     <li>
                         <a href="academics.html" class="nav-link">
                             Academics
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="events.html" class="nav-link">
+                            Events
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="students.html" class="nav-link">
+                            Students
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="faq.html" class="nav-link">
+                            FAQ
                         </a>
                     </li>
 
@@ -95,100 +107,134 @@ Dark Mode
     </header>
 
     <main>
-        <section class="hero-section">
+        <!-- =========================================================
+     CAMPUS IMAGE SLIDER
+     ========================================================= -->
+<section class="hero-section">
 
-            <!-- Campus Image Slider -->
-            <div class="campus-slider" aria-label="Campus Image Slider">
+    <div class="campus-slider">
 
-                <div class="slider-track">
+        <div class="slider-track">
 
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img
+                    src="../images/campus_image.png"
+                    alt="CHARUSAT Campus"
+                    class="campus-slide-image"
+                >
 
-                    <div class="slide active">
-                        <img src="../images/campus_image.png" alt="StudentHub College Campus"
-                            class="campus-slide-image">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Welcome to CHARUSAT</h2>
+                        <p>Learn, connect and grow together.</p>
                     </div>
-
-                    <!--
-                TODO:
-                Add more slides here when you are ready.
-
-                Example:
-
-                <div class="slide">
-                    <img
-                        src="../assets/images/campus-2.jpg"
-                        alt="College Campus"
-                        class="campus-slide-image"
-                    >
                 </div>
-            -->
-
-                </div>
-
-                <!-- Previous Button -->
-                <button type="button" class="slider-button slider-prev" aria-label="Previous campus image">
-                    &#10094;
-                </button>
-
-                <!-- Next Button -->
-                <button type="button" class="slider-button slider-next" aria-label="Next campus image">
-                    &#10095;
-                </button>
-
-                <!-- Slider Indicators -->
-                <div class="slider-indicators">
-
-                    <button type="button" class="slider-dot active" aria-label="Show campus image 1">
-                    </button>
-
-                    <!--
-                TODO:
-                Add additional dots when additional images are added.
-            -->
-
-                </div>
-
             </div>
 
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img
+                    src="../images/learning.png"
+                    alt="Learning"
+                    class="campus-slide-image"
+                >
 
-            <!-- StudentHub Introduction -->
-            <div class="hero-content">
-
-                <span class="hero-label">
-                    WELCOME TO STUDENTHUB
-                </span>
-
-                <h1 id="hero-heading">
-                    Your Campus.
-                    <span>Your Community.</span>
-                </h1>
-
-
-                <p>
-                    StudentHub brings students, teachers, and academic
-                    resources together in one simple and convenient platform.
-                </p>
-
-                <div class="hero-buttons">
-
-                    <a href="login.html" class="btn btn-primary">
-                        Get Started
-                    </a>
-
-                    <a href="about.html" class="btn btn-secondary">
-                        Learn More
-                    </a>
-
-                    <button type="button" id="heading-change-btn" class="btn btn-heading-change">
-                        Change Heading
-                    </button>
-
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Campus Life</h2>
+                        <p>Explore opportunities beyond the classroom.</p>
+                    </div>
                 </div>
-
-
             </div>
 
-        </section>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img
+                    src="../images/campus_2.png"
+                    alt="Students on Campus"
+                    class="campus-slide-image"
+                >
+
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Learn Together</h2>
+                        <p>Share knowledge and collaborate with your classmates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <img
+                    src="../images/campus_3.png"
+                    alt="Student Activities"
+                    class="campus-slide-image"
+                >
+
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>StudentHub</h2>
+                        <p>Your central place for student resources and updates.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Previous Button -->
+        <button
+            class="slider-button slider-prev"
+            type="button"
+            aria-label="Previous slide"
+        >
+            &#10094;
+        </button>
+
+        <!-- Next Button -->
+        <button
+            class="slider-button slider-next"
+            type="button"
+            aria-label="Next slide"
+        >
+            &#10095;
+        </button>
+
+        <!-- Slider Indicators -->
+        <div class="slider-indicators">
+
+            <button
+                class="slider-dot active"
+                type="button"
+                aria-label="Go to slide 1"
+                aria-current="true"
+            ></button>
+
+            <button
+                class="slider-dot"
+                type="button"
+                aria-label="Go to slide 2"
+                aria-current="false"
+            ></button>
+
+            <button
+                class="slider-dot"
+                type="button"
+                aria-label="Go to slide 3"
+                aria-current="false"
+            ></button>
+
+            <button
+                class="slider-dot"
+                type="button"
+                aria-label="Go to slide 4"
+                aria-current="false"
+            ></button>
+
+        </div>
+
+    </div>
+
 
         <section>
             <h2>Why StudentHub</h2>

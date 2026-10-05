@@ -1,4 +1,21 @@
-﻿<!DOCTYPE html>
+﻿<?php
+
+require "../php/db_connect.php";
+
+$courseQuery = "SELECT course_id, course_name FROM courses ORDER BY course_name";
+
+$courseStatement = $pdo->prepare($courseQuery);
+
+$courseStatement->execute();
+
+$courses = $courseStatement->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -73,7 +90,7 @@
                     Login
                 </a>
 
-                <a href="register.html" class="nav-register">
+                <a href="register.php" class="nav-register">
                     Register
                 </a>
 
@@ -87,12 +104,15 @@
     <main>
         <section>
             <h2>Registration Form</h2>
-            <form action="#">
+            <form action="../php/process_registration.php" method="POST" novalidate>
                 <label for="full-name">Full Name</label>
                 <input type="text" id="full-name" name="full-name">
 
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email">
+
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile">
 
                 <label for="role">Role</label>
                 <select id="role" name="role">
@@ -101,8 +121,38 @@
                     <option value="admin">Administrator</option>
                 </select>
 
-                <label for="department">Department</label>
-                <input type="text" id="department" name="department">
+                <label for="course">Course</label>
+
+                <select id="course" name="course" required>
+
+                    <option value="">Select Course</option>
+
+                    <?php foreach ($courses as $course): ?>
+
+                        <option value="<?php echo htmlspecialchars($course["course_name"]); ?>">
+                            <?php echo htmlspecialchars($course["course_name"]); ?>
+                        </option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+                <label for="year">Year</label>
+                <select id="year" name="year">
+                    <option value="">Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password">
@@ -110,7 +160,8 @@
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password">
 
-                <label><input type="checkbox" name="agree"> I agree to the terms and conditions.</label>
+                <label><input type="checkbox" name="terms" value="accepted"> I agree to the terms and
+                    conditions.</label>
 
                 <button type="submit">Register</button>
             </form>

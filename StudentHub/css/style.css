@@ -1568,6 +1568,172 @@ footer a:hover {
 
 
 /* =========================================================
+   PRACTICAL 6: DATA DIRECTORY PAGES
+   ========================================================= */
+
+.data-page-intro {
+    background:
+        linear-gradient(135deg, rgba(159, 95, 56, 0.1), rgba(214, 175, 111, 0.14)),
+        var(--surface);
+}
+
+.data-page-intro h1 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+}
+
+.eyebrow,
+.data-tag {
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.data-controls {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.data-controls-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.data-controls label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.data-controls input,
+.data-controls select {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.65rem 0.75rem;
+    color: var(--text);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.data-controls input:focus,
+.data-controls select:focus {
+    outline: 3px solid rgba(159, 95, 56, 0.2);
+    border-color: var(--primary);
+}
+
+.data-status {
+    min-height: 1.7em;
+    margin-bottom: 1rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.data-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.data-card,
+.faq-data-card {
+    height: 100%;
+    margin: 0;
+    padding: 1.2rem;
+}
+
+.data-card h3,
+.faq-data-card h3 {
+    margin: 0.4rem 0 0.75rem;
+}
+
+.data-card p,
+.faq-data-card p {
+    margin: 0.4rem 0;
+}
+
+.data-meta,
+.data-email {
+    color: var(--muted);
+}
+
+.data-email {
+    overflow-wrap: anywhere;
+    font-size: 0.88rem;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+}
+
+.pagination p {
+    min-width: 100px;
+    margin: 0;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 650;
+}
+
+.pagination button {
+    min-height: 42px;
+    padding: 0.55rem 1rem;
+    color: #ffffff;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    font-weight: 650;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
+}
+
+.faq-data-list {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (max-width: 800px) {
+    .data-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .data-controls,
+    .data-controls-compact {
+        grid-template-columns: 1fr;
+    }
+
+    .pagination {
+        gap: 0.6rem;
+    }
+
+    .pagination p {
+        min-width: auto;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* =========================================================
    VERY SMALL MOBILE
    ========================================================= */
 
