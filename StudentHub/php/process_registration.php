@@ -234,7 +234,7 @@ try {
     echo "<p>Your StudentHub registration has been completed successfully.</p>";
 
     echo "<p>";
-    echo "<a href='../pages/register.html'>Register Another Student</a>";
+    echo "<a href='../pages/register.php'>Register Another Student</a>";
     echo "</p>";
 
     echo "<p>";
@@ -289,7 +289,7 @@ try {
         echo "<p>This email address is already registered.</p>";
 
         echo "<p>";
-        echo "<a href='../pages/register.html'>Go Back to Registration</a>";
+        echo "<a href='../pages/register.php'>Go Back to Registration</a>";
         echo "</p>";
 
         echo "</section>";

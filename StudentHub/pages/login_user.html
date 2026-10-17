@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>StudentHub | Sign In</title>
+</head>
+<body class="login-page">
+    <main class="login-card" aria-labelledby="login-title">
+        <a href="index.html" class="brand login-brand"><img src="../images/logo.png" alt="StudentHub Logo" class="brand-logo"><span class="brand-name">StudentHub</span></a>
+        <h1 id="login-title">Sign in to StudentHub</h1>
+        <p>Use the email address and password from your secure account registration.</p>
+        <p id="login-message" class="auth-message" role="alert" hidden></p>
+        <form action="../php/process_login.php" method="POST">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required maxlength="150">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required maxlength="4096">
+            <button type="submit">Sign in</button>
+        </form>
+        <p>New to StudentHub? <a href="register_user.php">Create a secure account</a>.</p>
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const message = document.getElementById("login-message");
+        const messages = {
+            invalid_credentials: "Invalid email or password. Please try again.",
+            invalid_request: "Please submit the login form to sign in.",
+            service: "Sign-in is temporarily unavailable. Please try again later."
+        };
+        const text = params.get("timeout") === "1" ? "Your session timed out after 15 minutes of inactivity. Please sign in again." : messages[params.get("error")];
+        if (text) { message.textContent = text; message.hidden = false; }
+    </script>
+</body>
+</html>

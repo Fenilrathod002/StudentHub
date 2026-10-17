@@ -216,7 +216,7 @@ try {
 
                             </p>
 
-                            <a href="../php/event_register.php">
+                            <a href="../php/event_registration.php">
 
                                 Register for Event
 

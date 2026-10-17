@@ -88,7 +88,7 @@ try {
     <h2>Event Registrations</h2>
 
     <p>
-        <a href="event_register.php">
+        <a href="event_registration.php">
             Register Student for Event
         </a>
     </p>
