@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
 
 $id = $_GET["id"] ?? "";
@@ -103,6 +105,8 @@ try {
 
             <form action="update_student.php"
                   method="POST">
+
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(studentHubCsrfToken('student'), ENT_QUOTES, 'UTF-8'); ?>">
 
                 <input type="hidden"
                        name="id"

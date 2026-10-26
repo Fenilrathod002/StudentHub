@@ -1,10 +1,12 @@
--- Practical 9: run this table definition only when the users table does not exist.
+-- Legacy account-table backup for older StudentHub installations.
+-- New StudentHub registrations use students, teachers, and administrators.
+-- Do not import this for a fresh installation unless you need to preserve older accounts.
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'student') NOT NULL DEFAULT 'student',
+    role ENUM('admin', 'student', 'teacher') NOT NULL DEFAULT 'student',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -1,6 +1,6 @@
 <?php
 
-const STUDENTHUB_SESSION_TIMEOUT = 900;
+const STUDENTHUB_SESSION_TIMEOUT = 1200;
 
 function startStudentHubSession(): void
 {
@@ -23,7 +23,7 @@ function clearStudentHubSession(): void
 
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
-        setcookie(session_name(), "", time() - 42000, [
+        setcookie(session_name(), "", [
             "expires" => time() - 42000,
             "path" => $params["path"] ?? "/",
             "domain" => $params["domain"] ?? "",
@@ -68,4 +68,59 @@ function studentHubLogoutToken(): string
     }
 
     return $_SESSION["logout_csrf_token"];
+}
+
+function studentHubCsrfToken(string $purpose): string
+{
+    $key = "csrf_" . $purpose;
+    if (empty($_SESSION[$key])) {
+        $_SESSION[$key] = bin2hex(random_bytes(32));
+    }
+
+    return $_SESSION[$key];
+}
+
+function verifyStudentHubCsrfToken(string $purpose, mixed $submittedToken): bool
+{
+    $key = "csrf_" . $purpose;
+    $sessionToken = $_SESSION[$key] ?? "";
+
+    return is_string($submittedToken) && is_string($sessionToken)
+        && $sessionToken !== "" && hash_equals($sessionToken, $submittedToken);
+}
+
+function requireStudentHubRole(string $loginPath, array $allowedRoles): void
+{
+    requireStudentHubAuthentication($loginPath);
+
+    if (!in_array($_SESSION["user_role"], $allowedRoles, true)) {
+        http_response_code(403);
+        exit("You do not have permission to access this page.");
+    }
+}
+
+function redirectStudentHubAuthenticatedUser(): void
+{
+    startStudentHubSession();
+
+    $role = $_SESSION["user_role"] ?? "";
+    if (empty($_SESSION["user_id"]) || !in_array($role, ["student", "teacher", "admin"], true)) {
+        return;
+    }
+
+    $lastActivity = $_SESSION["last_activity"] ?? 0;
+    if ((!is_int($lastActivity) && !ctype_digit((string) $lastActivity)) || (time() - (int) $lastActivity) > STUDENTHUB_SESSION_TIMEOUT) {
+        clearStudentHubSession();
+        return;
+    }
+
+    $_SESSION["last_activity"] = time();
+    $dashboardPaths = [
+        "student" => "student_dashboard.php",
+        "teacher" => "teacher_dashboard.php",
+        "admin" => "admin_dashboard.php",
+    ];
+
+    header("Location: " . $dashboardPaths[$role]);
+    exit;
 }

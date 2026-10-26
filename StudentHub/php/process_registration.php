@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+startStudentHubSession();
 require "db_connect.php";
 
 // Step 1: Allow only POST requests
@@ -7,11 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit("Invalid request method.");
 }
 
+if (!verifyStudentHubCsrfToken("legacy_registration", $_POST["csrf_token"] ?? null)) {
+    http_response_code(403);
+    exit("Your form session has expired. Please return to registration and try again.");
+}
+
 // Step 2: Read form data
 $name = trim($_POST["full-name"] ?? "");
 $email = trim($_POST["email"] ?? "");
 $mobile = trim($_POST["mobile"] ?? "");
-$role = trim($_POST["role"] ?? "");
+$role = "student";
 $course = trim($_POST["course"] ?? "");
 $year = trim($_POST["year"] ?? "");
 $gender = trim($_POST["gender"] ?? "");
@@ -20,6 +27,11 @@ $password = $_POST["password"] ?? "";
 $confirmPassword = $_POST["confirm-password"] ?? "";
 
 $termsAccepted = isset($_POST["terms"]);
+
+if (!empty($_SESSION["user_id"])) {
+    http_response_code(403);
+    exit("Sign out before creating a student account.");
+}
 
 // Step 3: Validation
 $errors = [];
@@ -45,11 +57,6 @@ if ($mobile === "") {
     $errors[] = "Mobile number must be 10 digits and start with 6-9.";
 }
 
-// Role
-if ($role === "") {
-    $errors[] = "Role is required.";
-}
-
 // Course
 if ($course === "") {
     $errors[] = "Course is required.";
@@ -58,11 +65,15 @@ if ($course === "") {
 // Year
 if ($year === "") {
     $errors[] = "Year is required.";
+} elseif (!in_array($year, ["1", "2", "3", "4"], true)) {
+    $errors[] = "Please select a valid year.";
 }
 
 // Gender
 if ($gender === "") {
     $errors[] = "Gender is required.";
+} elseif (!in_array($gender, ["Male", "Female", "Other"], true)) {
+    $errors[] = "Please select a valid gender.";
 }
 
 // Password
@@ -305,7 +316,9 @@ try {
 
     } else {
 
-        echo "Database error: " . htmlspecialchars($e->getMessage());
+        error_log("StudentHub legacy registration failed: " . $e->getMessage());
+        http_response_code(500);
+        echo "Registration could not be completed. Please try again later.";
     }
 }
 

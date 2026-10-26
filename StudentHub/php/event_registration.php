@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
 
 try {
@@ -86,6 +88,7 @@ try {
 
     <form action="process_event_registration.php"
           method="POST">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(studentHubCsrfToken('event_registration'), ENT_QUOTES, 'UTF-8'); ?>">
 
         <label for="student">
             Student

@@ -29,7 +29,7 @@
             invalid_request: "Please submit the login form to sign in.",
             service: "Sign-in is temporarily unavailable. Please try again later."
         };
-        const text = params.get("timeout") === "1" ? "Your session timed out after 15 minutes of inactivity. Please sign in again." : messages[params.get("error")];
+        const text = params.get("timeout") === "1" ? "Your session timed out after 20 minutes of inactivity. Please sign in again." : messages[params.get("error")];
         if (text) { message.textContent = text; message.hidden = false; }
     </script>
 </body>

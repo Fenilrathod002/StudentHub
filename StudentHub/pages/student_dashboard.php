@@ -6,6 +6,10 @@ if ($_SESSION["user_role"] === "admin") {
     header("Location: admin_dashboard.php");
     exit;
 }
+if ($_SESSION["user_role"] === "teacher") {
+    header("Location: teacher_dashboard.php");
+    exit;
+}
 if ($_SESSION["user_role"] !== "student") {
     clearStudentHubSession();
     header("Location: login_user.html");

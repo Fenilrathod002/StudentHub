@@ -1,6 +1,10 @@
 <?php
 
+require_once __DIR__ . "/../php/auth_check.php";
+startStudentHubSession();
 require "../php/db_connect.php";
+
+$canManageEventRegistrations = ($_SESSION["user_role"] ?? "") === "admin";
 
 try {
 
@@ -216,11 +220,11 @@ try {
 
                             </p>
 
-                            <a href="../php/event_registration.php">
-
-                                Register for Event
-
-                            </a>
+                            <?php if ($canManageEventRegistrations): ?>
+                                <a href="../php/event_registration.php">
+                                    Register Student for Event
+                                </a>
+                            <?php endif; ?>
 
                         </article>
 

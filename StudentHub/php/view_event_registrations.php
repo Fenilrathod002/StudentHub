@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
 
 try {

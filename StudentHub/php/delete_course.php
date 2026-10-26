@@ -1,8 +1,20 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
 
-$id = $_GET["id"] ?? "";
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
+    exit("Invalid request method.");
+}
+
+if (!verifyStudentHubCsrfToken("course", $_POST["csrf_token"] ?? null)) {
+    http_response_code(403);
+    exit("Invalid request token.");
+}
+
+$id = $_POST["id"] ?? "";
 
 if ($id === "" || !is_numeric($id)) {
     exit("Invalid course ID.");

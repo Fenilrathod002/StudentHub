@@ -1,9 +1,17 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
     exit("Invalid request method.");
+}
+
+if (!verifyStudentHubCsrfToken("student", $_POST["csrf_token"] ?? null)) {
+    http_response_code(403);
+    exit("Invalid request token.");
 }
 
 $id = $_POST["id"] ?? "";
@@ -40,8 +48,16 @@ if ($year === "") {
     exit("Year is required.");
 }
 
-if ($gender === "") {
-    exit("Gender is required.");
+if (!in_array((string) $year, ["1", "2", "3", "4"], true)) {
+    exit("Invalid year.");
+}
+
+if (!in_array($role, ["student", "teacher", "admin"], true)) {
+    exit("Invalid role.");
+}
+
+if (!in_array($gender, ["Male", "Female", "Other"], true)) {
+    exit("Invalid gender.");
 }
 
 

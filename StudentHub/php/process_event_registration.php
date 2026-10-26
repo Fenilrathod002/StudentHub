@@ -1,9 +1,17 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
     exit("Invalid request method.");
+}
+
+if (!verifyStudentHubCsrfToken("event_registration", $_POST["csrf_token"] ?? null)) {
+    http_response_code(403);
+    exit("Invalid request token.");
 }
 
 $studentId = $_POST["student_id"] ?? "";

@@ -1,6 +1,10 @@
 ﻿<?php
 
+require_once __DIR__ . "/../php/auth_check.php";
+redirectStudentHubAuthenticatedUser();
 require "../php/db_connect.php";
+
+$registrationCsrfToken = htmlspecialchars(studentHubCsrfToken("legacy_registration"), ENT_QUOTES, "UTF-8");
 
 $courseQuery = "SELECT course_id, course_name FROM courses ORDER BY course_name";
 
@@ -105,21 +109,17 @@ $courses = $courseStatement->fetchAll(PDO::FETCH_ASSOC);
         <section>
             <h2>Registration Form</h2>
             <form action="../php/process_registration.php" method="POST" novalidate>
+                <input type="hidden" name="csrf_token" value="<?php echo $registrationCsrfToken; ?>">
                 <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" name="full-name">
+                <input type="text" id="full-name" name="full-name" required maxlength="100" autocomplete="name">
 
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" required maxlength="150" autocomplete="email">
 
                 <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile">
+                <input type="tel" id="mobile" name="mobile" required pattern="[6-9][0-9]{9}" inputmode="numeric" autocomplete="tel">
 
-                <label for="role">Role</label>
-                <select id="role" name="role">
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
-                    <option value="admin">Administrator</option>
-                </select>
+                <input type="hidden" name="role" value="student">
 
                 <label for="course">Course</label>
 
@@ -138,7 +138,7 @@ $courses = $courseStatement->fetchAll(PDO::FETCH_ASSOC);
                 </select>
 
                 <label for="year">Year</label>
-                <select id="year" name="year">
+                <select id="year" name="year" required>
                     <option value="">Select Year</option>
                     <option value="1">1st Year</option>
                     <option value="2">2nd Year</option>
@@ -147,7 +147,7 @@ $courses = $courseStatement->fetchAll(PDO::FETCH_ASSOC);
                 </select>
 
                 <label for="gender">Gender</label>
-                <select id="gender" name="gender">
+                <select id="gender" name="gender" required>
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -155,12 +155,12 @@ $courses = $courseStatement->fetchAll(PDO::FETCH_ASSOC);
                 </select>
 
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password">
 
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password">
+                <input type="password" id="confirm-password" name="confirm-password" required minlength="8" autocomplete="new-password">
 
-                <label><input type="checkbox" name="terms" value="accepted"> I agree to the terms and
+                <label><input type="checkbox" name="terms" value="accepted" required> I agree to the terms and
                     conditions.</label>
 
                 <button type="submit">Register</button>

@@ -19,49 +19,82 @@ if (!is_string($email) || !is_string($password) || $email === "" || $password ==
 
 require __DIR__ . "/db_connect_mysqli.php";
 
-$statement = $conn->prepare("SELECT id, name, email, password, role FROM users WHERE email = ? LIMIT 1");
-if ($statement === false) {
-    error_log("StudentHub login query preparation failed: " . $conn->error);
-    $conn->close();
-    header("Location: ../pages/login_user.html?error=service");
-    exit;
-}
+function findStudentHubAccount(mysqli $conn, string $table, string $role, string $email): ?array
+{
+    $whereClause = "email = ?";
+    if ($table === "students") {
+        $whereClause .= " AND role = 'student'";
+    }
 
-$statement->bind_param("s", $email);
-if (!$statement->execute()) {
-    error_log("StudentHub login query failed: " . $statement->error);
+    $statement = $conn->prepare("SELECT id, name, email, password FROM {$table} WHERE {$whereClause} LIMIT 1");
+    if ($statement === false) {
+        return null;
+    }
+
+    $statement->bind_param("s", $email);
+    if (!$statement->execute()) {
+        $statement->close();
+        return null;
+    }
+
+    $statement->bind_result($id, $name, $storedEmail, $passwordHash);
+    $account = $statement->fetch()
+        ? [
+            "id" => $id,
+            "name" => $name,
+            "email" => $storedEmail,
+            "password" => $passwordHash,
+            "role" => $role,
+        ]
+        : null;
     $statement->close();
-    $conn->close();
-    header("Location: ../pages/login_user.html?error=service");
-    exit;
+
+    return $account ?: null;
 }
 
-$statement->bind_result($userId, $name, $storedEmail, $passwordHash, $role);
-$userFound = $statement->fetch();
-$statement->close();
+$account = null;
+$accountSources = [
+    ["table" => "administrators", "role" => "admin"],
+    ["table" => "teachers", "role" => "teacher"],
+    ["table" => "students", "role" => "student"],
+];
+foreach ($accountSources as $source) {
+    $candidate = findStudentHubAccount($conn, $source["table"], $source["role"], $email);
+    $verified = $candidate !== null && password_verify($password, $candidate["password"]);
+
+    if ($verified) {
+        $account = $candidate;
+        break;
+    }
+}
 $conn->close();
 
-if (!$userFound || !password_verify($password, $passwordHash)) {
+if ($account === null) {
     header("Location: ../pages/login_user.html?error=invalid_credentials");
     exit;
 }
 
-if (!in_array($role, ["admin", "student"], true)) {
-    error_log("StudentHub login rejected unsupported role for user ID " . (int) $userId);
+if (!in_array($account["role"], ["admin", "student", "teacher"], true)) {
+    error_log("StudentHub login rejected unsupported role for user ID " . (int) $account["id"]);
     header("Location: ../pages/login_user.html?error=invalid_credentials");
     exit;
 }
 
 session_regenerate_id(true);
-$_SESSION["user_id"] = (int) $userId;
-$_SESSION["user_name"] = $name;
-$_SESSION["user_email"] = $storedEmail;
-$_SESSION["user_role"] = $role;
+$_SESSION["user_id"] = (int) $account["id"];
+$_SESSION["user_name"] = $account["name"];
+$_SESSION["user_email"] = $account["email"];
+$_SESSION["user_role"] = $account["role"];
 $_SESSION["last_activity"] = time();
 $_SESSION["logout_csrf_token"] = bin2hex(random_bytes(32));
 
-if ($role === "admin") {
+if ($account["role"] === "admin") {
     header("Location: ../pages/admin_dashboard.php");
+    exit;
+}
+
+if ($account["role"] === "teacher") {
+    header("Location: ../pages/teacher_dashboard.php");
     exit;
 }
 

@@ -1,14 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../php/auth_check.php";
-startStudentHubSession();
-
-if (empty($_SESSION["registration_csrf_token"])) {
-    $_SESSION["registration_csrf_token"] = bin2hex(random_bytes(32));
-}
-
-$csrfToken = $_SESSION["registration_csrf_token"];
-
+header("Location: register.php");
+exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +37,7 @@ $csrfToken = $_SESSION["registration_csrf_token"];
     <main>
         <section>
             <h1>Secure User Registration</h1>
-            <p>Create a StudentHub account. Your password is stored securely.</p>
+            <p>Create a StudentHub student account. Your password is stored securely.</p>
             <form action="../php/process_user_registration.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, "UTF-8") ?>">
 
@@ -53,6 +46,9 @@ $csrfToken = $_SESSION["registration_csrf_token"];
 
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" required maxlength="150" autocomplete="email">
+
+                <input type="hidden" name="role" value="student">
+                <p>Student accounts can be created here. An administrator creates Teacher and Administrator accounts from the admin dashboard.</p>
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required minlength="6" maxlength="4096" autocomplete="new-password">

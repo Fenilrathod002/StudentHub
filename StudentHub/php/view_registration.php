@@ -1,6 +1,9 @@
 <?php
 
+require_once __DIR__ . "/auth_check.php";
+requireStudentHubRole("../pages/login_user.html", ["admin"]);
 require "db_connect.php";
+$studentCsrfToken = htmlspecialchars(studentHubCsrfToken("student"), ENT_QUOTES, "UTF-8");
 
 ?>
 
@@ -178,12 +181,10 @@ require "db_connect.php";
 
                         echo " | ";
 
-                        echo "<a href='delete_student.php?id="
-                            . urlencode($student["id"])
-                            . "'
-      onclick=\"return confirm('Are you sure you want to delete this student?');\">
-        Delete
-      </a>";
+                        echo "<form action='delete_student.php' method='POST' class='inline-form' onsubmit=\"return confirm('Are you sure you want to delete this student?');\">"
+                            . "<input type='hidden' name='csrf_token' value='" . $studentCsrfToken . "'>"
+                            . "<input type='hidden' name='id' value='" . htmlspecialchars($student["id"], ENT_QUOTES, "UTF-8") . "'>"
+                            . "<button type='submit'>Delete</button></form>";
 
                         echo "</td>";
 

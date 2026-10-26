@@ -3,11 +3,11 @@
 // This MySQLi connection is shared by Practical 9 registration and Practical 10 authentication.
 $host = "localhost";
 $username = "root";
-$password = "";
+$dbPassword = "";
 $dbname = "studenthub";
 
 mysqli_report(MYSQLI_REPORT_OFF);
-$conn = new mysqli($host, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $dbPassword, $dbname);
 
 if ($conn->connect_error) {
     error_log("StudentHub registration database connection failed: " . $conn->connect_error);
